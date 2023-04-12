@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Autos!{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+  <table>
+  {% for Autos in Show %}
+    <tr>
+      <td>
+        <h1>Number</h1>
+     {{ Autos.id }}
+      </td>
+
+      <td>
+        <h1>Model</h1>
+      {{ Autos.model }}
+      </td>
+      <td>
+        <h1>type</h1>
+      {{ Autos.type }}
+      </td>
+      <td>
+        <h1>prijs</h1>
+      {{ Autos.prijs }}
+      </td>
+    </tr>
+
+
+
+  {% endfor %}
+  </table>
+</div>
+{% endblock %}
