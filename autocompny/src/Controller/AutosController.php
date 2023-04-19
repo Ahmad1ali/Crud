@@ -27,7 +27,7 @@ class AutosController extends AbstractController
     #[Route('/add', name: 'app_autos')]
     public function insert ( Request $request , EntityManagerInterface $entityManager): Response
     {
-        $add = new NewAutoType();
+        $add = new Autos();
 
         $form = $this->createForm(NewAutoType::class, $add);
         $form->handleRequest($request);
