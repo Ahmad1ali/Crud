@@ -35,14 +35,22 @@ class AutosController extends AbstractController
         ]);
     }
     #[Route('/delete/{id}', name: 'app_delete')]
-    public function delete(Autos $autos, AutosRepository $autosRepository): Response
+    public function delete(Autos $delete, EntityManagerInterface $entityManager ,int $id): Response
     {
-        $details =$autosRepository->findBy( ['id'=>$autos]);
+     $deleteAuto=$delete->getModel();
+     $deleteAutos= $entityManager->getRepository(Autos::class)->find($id);
+     if (!$deleteAutos){
+         throw $this->createNotFoundException(
+             'No product found for id '.$id
+         );
+     }
+     $entityManager->remove($deleteAutos);
+     $entityManager->flush();
 
-        return $this->render('autos/delet.html.twig', [
-            'id' => $autos,
-            '' => $details,
+        return $this->redirectToRoute('app_home',[
+            'deleteAuto'=>$deleteAuto
         ]);
+        
     }
 
 
