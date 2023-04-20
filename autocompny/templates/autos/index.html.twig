@@ -19,6 +19,7 @@
       <th scope="col">type</th>
       <th scope="col">gewicht</th>
       <th scope="col">prijs</th>
+{#      <th scope="col"><a href="" class="btn btn-dark">details</a> </th>#}
     </tr>
     </thead>
       <tbody>
@@ -32,6 +33,9 @@
         <td>{{ Autos.type }}</td>
         <td>{{ Autos.gewicht }}</td>
         <td>{{ Autos.prijs }}</td>
+        <td><a href="{{ path ('app_data',{id: Autos.id})}}" class="btn btn-dark">details</a> </td>
+        <td><a href="{{ path ('app_update',{id: Autos.id})}}" class="btn btn-dark">update</a> </td>
+        <td><a href="{{ path ('app_delete',{id: Autos.id})}}" class="btn btn-dark">delet</a> </td>
 
 
 
@@ -43,7 +47,7 @@
 
       </thead>
   </table>
-  <a href="/add" class="btn btn-info ms-2">toevogen</a>
+  <a href="/add" class="btn btn-info ms-2">toevoegen</a>
 
 
 {% endblock %}

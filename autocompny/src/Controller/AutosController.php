@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AutosController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route('/home', name: 'app_home')]
     public function index(AutosRepository $autosRepository): Response
     {
         $show = $autosRepository->findAll();
@@ -23,6 +23,51 @@ class AutosController extends AbstractController
             'Show' => $show,
         ]);
     }
+
+    #[Route('/details/{id}', name: 'app_data')]
+    public function details(Autos $autos, AutosRepository $autosRepository): Response
+    {
+        $details =$autosRepository->findBy( ['id'=>$autos]);
+
+        return $this->render('autos/details.html.twig', [
+            'id' => $autos,
+            'data' => $details,
+        ]);
+    }
+    #[Route('/delete/{id}', name: 'app_delete')]
+    public function delete(Autos $autos, AutosRepository $autosRepository): Response
+    {
+        $details =$autosRepository->findBy( ['id'=>$autos]);
+
+        return $this->render('autos/delet.html.twig', [
+            'id' => $autos,
+            '' => $details,
+        ]);
+    }
+
+
+    #[Route('/update/{id}', name: 'app_update')]
+    public function update ( Autos $autos, AutosRepository $autosRepository ,Request $request , EntityManagerInterface $entityManager): Response
+    {
+        $autoId=$autos->getId();
+        $auto =$entityManager->getRepository(Autos::class)->find($autoId);
+
+        $form = $this->createForm(NewAutoType::class, $auto);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $add = $form->getData();
+            $entityManager->persist($add);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_home');
+        }
+
+        return $this->renderForm('autos/update.html.twig', [
+            'id' =>$auto,
+            'form' => $form,
+        ]);
+    }
+
 
     #[Route('/add', name: 'app_autos')]
     public function insert ( Request $request , EntityManagerInterface $entityManager): Response

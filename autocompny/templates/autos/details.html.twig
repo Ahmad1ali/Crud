@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="hero-image">
+        <div class="hero-text">
+            <h1>Welcome to ,<span class="text-warning">Golans' Cars </span></h1>
+            <p>the best and the only</p>
+            <a href="#" class="btn btn-outline-dark"><span class="text-light">lets start it</span> </a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Model</th>
+            <th scope="col">type</th>
+            <th scope="col">gewicht</th>
+            <th scope="col">prijs</th>
+            <th scope="col">kleur</th>
+            <th scope="col">voorraad</th>
+            {#      <th scope="col"><a href="" class="btn btn-dark">details</a> </th>#}
+        </tr>
+        </thead>
+        <tbody>
+
+
+        {% for Autos in data %}
+
+        <tr>
+            <th scope="row"> {{ Autos.id }}</th>
+            <td>{{ Autos.model }}</td>
+            <td>{{ Autos.type }}</td>
+            <td>{{ Autos.gewicht }}</td>
+            <td>{{ Autos.prijs }}</td>
+            <td>{{ Autos.kleur }}</td>
+            <td>{{ Autos.voorraad }}</td>
+{#            <td><a href="{{ path ('app_data',{id: Autos.id})}}" class="btn btn-dark">details</a> </td>#}
+
+
+
+
+
+
+            {% endfor %}
+        </tbody>
+
+        </thead>
+    </table>
+    <a href="/home" class="btn btn-info ms-2">back</a>
+
+
+{% endblock %}

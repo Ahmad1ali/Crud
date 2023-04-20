@@ -41,11 +41,7 @@ CREATE TABLE `autos` (
 -- Gegevens worden geëxporteerd voor tabel `autos`
 --
 
-INSERT INTO `autos` (`id`, `model`, `type`, `gewicht`, `prijs`, `voorraad`, `kleur`) VALUES
-(1, 'Volkswagen', 'Up', 945, 18140, 3, 'Blauw'),
-(2, 'Porsche', '011', 1075, 123396, 2, 'wit'),
-(3, 'Volkswagen ', 'Tiguan', 1510, 36635, 4, 'zilver'),
-(4, 'Mini', 'Cooper S', 1185, 57000, 5, 'Geel');
+c
 
 -- --------------------------------------------------------
 
