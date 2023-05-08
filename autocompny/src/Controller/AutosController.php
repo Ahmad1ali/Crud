@@ -64,6 +64,10 @@ class AutosController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $add = $form->getData();
+            $this->addFlash(
+                'notice',
+                'Your changes were saved!'
+            );
             $entityManager->persist($add);
             $entityManager->flush();
 

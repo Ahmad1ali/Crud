@@ -11,6 +11,13 @@
       <a href="#" class="btn btn-outline-dark"><span class="text-light">lets start it</span> </a>
     </div>
   </div>
+  {% for label, messages in app.flashes %}
+    {% for message in messages %}
+      <div class="flash-{{ label }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endfor %}
   <table class="table">
     <thead>
     <tr>
